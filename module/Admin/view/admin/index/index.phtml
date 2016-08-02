@@ -1,0 +1,27 @@
+<?php
+
+/* @var $this Zend\View\Renderer\PhpRenderer */
+
+$this->headTitle('Products List');
+
+
+?>
+<p><a href="<?=$this->url('product-create');?>">Create new product</a></p>
+<table class="table">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>desc</th>
+    </tr>
+    <?php /** @var \Admin\Model\Product[] $products */
+    foreach ($products as $product) {?>
+        <tr>
+            <td><?=$product->id;?></td>
+            <td>
+                <a href="<?php echo $this->url('product-edit', ['id' => $product->id]);?>"><?=$product->name;?></a>
+            </td>
+            <td><?=$product->description;?></td>
+        </tr>
+    <?php } ?>
+</table>
+
