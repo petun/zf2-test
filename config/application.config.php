@@ -5,7 +5,8 @@ return array(
         'Application',
         'Admin',
         'ZendDeveloperTools',
-        'ZendDbMigrations'
+        'ZendDbMigrations',
+        'DluTwBootstrap'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

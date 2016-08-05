@@ -14,7 +14,7 @@ class ProductForm extends Form
 {
     public function __construct($name, array $options)
     {
-        parent::__construct($name, $options);
+        parent::__construct('product', []);
 
         $this->add([
             'name' => 'id',

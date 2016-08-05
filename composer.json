@@ -10,7 +10,8 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "^2.5",
-        "knyzev/zend-db-migrations": "dev-master"
+        "knyzev/zend-db-migrations": "dev-master",
+        "dlu/dlutwbootstrap": "dev-master"
     },
     "require-dev": {
         "zendframework/zend-developer-tools": "^1.1"

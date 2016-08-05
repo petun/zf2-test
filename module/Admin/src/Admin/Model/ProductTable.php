@@ -45,11 +45,10 @@ class ProductTable
 
     public function save(Product $product)
     {
-        var_dump($product);
         if ($product->id) {
-            return $this->tableGateway->update($product->toArray(), ['id' => $product->id]);
+            return $this->tableGateway->update($product->getArrayCopy(), ['id' => $product->id]);
         } else {
-            return $this->tableGateway->insert($product->toArray());
+            return $this->tableGateway->insert($product->getArrayCopy());
         }
 
     }

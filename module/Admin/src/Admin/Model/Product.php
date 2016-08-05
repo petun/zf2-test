@@ -29,7 +29,6 @@ class Product implements InputFilterAwareInterface
 
     public function exchangeArray($data)
     {
-        echo "Exhange array: " . print_r($data, true);
         $this->id = (!empty($data['id'])) ? $data['id'] : null;
         $this->name = (!empty($data['name'])) ? $data['name'] : null;
         $this->description = (!empty($data['description'])) ? $data['description'] : null;
@@ -41,7 +40,12 @@ class Product implements InputFilterAwareInterface
      */
     public function getArrayCopy()
     {
-        return get_object_vars($this);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'category_id' => $this->category_id
+        ];
     }
 
     /**
@@ -63,36 +67,41 @@ class Product implements InputFilterAwareInterface
      */
     public function getInputFilter()
     {
-        $this->inputFilter = new InputFilter();
+        if (!$this->inputFilter) {
+            $this->inputFilter = new InputFilter();
 
-        $this->inputFilter->add(array(
-            'name' => 'id',
-            'required' => true,
-            'filters' => array(
-                array('name' => 'Int'),
-            ),
-        ));
+            $this->inputFilter->add(array(
+                'name' => 'id',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'ToInt'),
+                ),
+            ));
 
-        $this->inputFilter->add(array(
-            'name' => 'name',
-            'required' => true,
-            'filters' => array(
-                array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
-            ),
-        ));
+            $this->inputFilter->add(array(
+                'name' => 'name',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+            ));
 
+
+            $this->inputFilter->add([
+                'name' => 'description',
+                'required' => false
+            ]);
+
+            $this->inputFilter->add([
+                'name' => 'category_id',
+                'required' => true,
+                'filters' => [
+                    ['name' => 'ToInt']
+                ]
+            ]);
+        }
 
         return $this->inputFilter;
-    }
-
-    public function toArray()
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'category_id' => $this->category_id
-        ];
     }
 }

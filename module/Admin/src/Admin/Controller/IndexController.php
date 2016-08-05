@@ -63,8 +63,6 @@ class IndexController extends AbstractActionController
 
         /** @var Product $model */
         $model = $this->getProductTable()->getProduct($id);
-        echo "Find model";
-        var_dump($model);
 
         $form->bind($model);
 
@@ -74,13 +72,6 @@ class IndexController extends AbstractActionController
             $form->setInputFilter( $model->getInputFilter() );
             $form->setData($request->getPost());
             if ($form->isValid()) {
-
-                echo "Model after valid";
-                var_dump($model);
-
-                var_dump($form->getData());
-
-
                 $this->getProductTable()->save($model);
                 $this->redirect()->toRoute('admin');
             }
