@@ -3,7 +3,9 @@
 /* @var $this Zend\View\Renderer\PhpRenderer */
 
 $this->headTitle('Products List');
+$this->placeholder('foo')->set('This is value');
 
+$this->inlineScript()->appendFile($this->basePath() . '/js/test.js');
 
 ?>
 <p><a href="<?=$this->url('product-create');?>">Create new product</a></p>

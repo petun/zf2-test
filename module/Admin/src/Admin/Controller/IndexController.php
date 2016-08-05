@@ -8,6 +8,7 @@ use Admin\Model\ProductTable;
 use Admin\Service\AdminService;
 use Zend\Http\Request;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
 /**
  * Class IndexController
@@ -26,6 +27,15 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
+
+        $layout = $this->layout();
+        $sidebarView = new ViewModel([
+            'message' => 'This is message'
+        ]);
+        $sidebarView->setTemplate('admin/index/_sidebar');
+        $layout->addChild($sidebarView, 'sidebar');
+
+
         /** @var ProductTable $table */
         return [
             'products' => $this->getProductTable()->getProducts()

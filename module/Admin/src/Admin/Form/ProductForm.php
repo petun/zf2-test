@@ -24,6 +24,9 @@ class ProductForm extends Form
         $this->add([
             'name' => 'name',
             'type' => 'Text',
+            'options' => array(
+                'label' => 'Title',
+            ),
         ]);
 
         $this->add([
@@ -35,6 +38,11 @@ class ProductForm extends Form
             'name' => 'category_id',
             'type' => 'Text',
         ]);
+
+        $this->attributes = [
+            'method' => 'post'
+        ];
+
 
         $this->add([
             'name' => 'submit',

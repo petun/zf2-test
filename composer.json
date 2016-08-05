@@ -11,7 +11,7 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "^2.5",
         "knyzev/zend-db-migrations": "dev-master",
-        "dlu/dlutwbootstrap": "dev-master"
+        "neilime/zf2-twb-bundle": "2.*@stable"
     },
     "require-dev": {
         "zendframework/zend-developer-tools": "^1.1"
